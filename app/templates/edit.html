@@ -1,0 +1,36 @@
+<!doctype html>
+<title>Vbo</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<div class="page">
+  <div class="metanav">
+    <a href="/" style="float: left">Home</a>
+     <a href="{{ url_for('signup') }}">sign up</a>
+  {% if not current_user.is_authenticated() %}
+    |<a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    |<a href="{{ url_for('logout') }}">log out</a>
+    |<a href="{{ url_for('user', nickname=g.user.nickname) }}">Your Profile</a>
+  {% endif %}
+  <hr />
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+<h1>Edit Your Profile</h1>
+<form action="" method="post" name="edit">
+    {{form.hidden_tag()}}
+    <table>
+        <tr>
+            <td>Your nickname:</td>
+            <td>{{form.nickname(size = 24)}}</td>
+        </tr>
+        <tr>
+            <td>About yourself:</td>
+            <td>{{form.about_me(cols = 32, rows = 4)}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Save Changes"></td>
+        </tr>
+    </table>
+</form>

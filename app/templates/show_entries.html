@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="" method="post" name="post">
+    {{form.hidden_tag()}}
+    <table>
+        <tr>
+            <td>Say something:</td>
+            <td>{{ form.post(size = 30, maxlength = 140) }}</td>
+            <td>
+            {% for error in form.errors.post %}
+            <span style="color: red;">[{{error}}]</span><br>
+            {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Post!"></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+  <ul class="entries">
+      <li><img src="{{user.avatar(128)}}" /></li>
+      {% for post in posts  %}
+        {% include 'post.html'  %}
+      {% endfor %}
+  </ul>
+{% endblock %}

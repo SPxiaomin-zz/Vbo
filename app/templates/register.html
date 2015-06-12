@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Sign Up</h2>
+  {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('signup') }}" method="post">
+       {{ form.hidden_tag()  }}
+      <dl>
+      <dt>Username:
+      <dd>{{ form.name(size=40) }}
+      <dt>Password:
+      <dd>{{ form.password(size=40)  }}
+      <dd>{{ form.submit  }}
+    </dl>
+  </form>
+{% endblock %}

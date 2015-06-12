@@ -1,0 +1,32 @@
+<!doctype html>
+<title>Vbo</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<div class="page">
+  <div class="metanav">
+    <a href="/" style="float: left">Home</a>
+     <a href="{{ url_for('signup') }}">sign up</a>
+  {% if not current_user.is_authenticated() %}
+    |<a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    |<a href="{{ url_for('logout') }}">log out</a>
+    |<a href="{{ url_for('user', nickname=user.nickname) }}">Your Profile</a>
+  {% endif %}
+  <hr />
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+<table>
+    <tr valign="top">
+        <td><img src="{{user.avatar(128)}}" /></td>
+        <td><h1 style="border: 0;">User: {{user.nickname}}</h1>
+        {% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
+        {% if user.id == g.user.id %}<p><a href="{{url_for('edit')}}">Edit</a></p>{% endif %}
+        </td>
+    </tr>
+</table>
+<hr />
+{% for post in posts  %}
+    {% include 'post.html' %}
+{% endfor %}
+</div>
