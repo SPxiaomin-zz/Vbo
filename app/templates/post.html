@@ -1,5 +1,5 @@
 <table>
     <tr valign="top">
-        <td><img src="{{post.author.avatar(50)}}" /></td><td><i>{{post.author.nickname}} says:</i><br />{{post.body}}</td>
+        <td><img src="{{post.author.avatar(50)}}" /></td><td><i><a href="{{ url_for('user', nickname=post.author.nickname) }}">{{post.author.nickname}}</a> says:</i><br />{{post.body}}<br />At&nbsp;{{post.timestamp}}</td>
     </tr>
 </table>

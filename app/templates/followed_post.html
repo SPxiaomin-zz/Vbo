@@ -21,7 +21,7 @@
 </form>
   <ul class="entries">
       <li><img src="{{user.avatar(128)}}" /></li>
-      {% for post in posts.items  %}
+      {% for post in posts  %}
         {% include 'post.html'  %}
       {% endfor %}
   </ul>
